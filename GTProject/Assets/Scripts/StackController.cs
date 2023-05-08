@@ -62,37 +62,6 @@ public class StackController : MonoBehaviour
         stackUI.SetTestButtons(CurrentStack.IsTesting);
     }
 
-    private void Update()
-    {
-        //[Testing] [Input]
-        //Todo: Remove this once there's proper controls.
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            foreach(var stack in stacks)
-            {
-                stack.StartTest();
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            foreach (var stack in stacks)
-            {
-                stack.Reset();
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            FocusPreviousStack();
-        }
-
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            FocusNextStack();
-        }
-    }
-
     public void FocusNextStack()
     {
         ++currentStackIndex;
@@ -105,6 +74,18 @@ public class StackController : MonoBehaviour
         --currentStackIndex;
         currentStackIndex = currentStackIndex < 0 ? stacks.Count - 1 : currentStackIndex;
         FocusOnCurrentStack();
+    }
+
+    public void ToggleCurrentStackTest() 
+    {
+        if (CurrentStack.IsTesting)
+        {
+            ResetCurrentStack();
+        }
+        else 
+        {
+            TestCurrentStack();
+        }
     }
 
     public void TestCurrentStack()

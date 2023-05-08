@@ -72,8 +72,8 @@ public class Block : MonoBehaviour
 
     public string GetInspectString()
     {
-        //[Blocks] [Inspect]
-        //Todo: This.
-        return "";
+        return $"<b>{data.grade}:</b> {data.domain}\n" +
+            $"{data.cluster}\n\n" +
+            $"<b>{data.standardID}:</b>\n{data.standardDescription}";
     }
 }

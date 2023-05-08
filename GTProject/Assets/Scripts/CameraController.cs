@@ -26,24 +26,6 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        //[Camera] [Input]
-        //Todo: Move this into core controls
-        if (!EventSystem.current.IsPointerOverGameObject())
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                EnableRotation();
-            }
-
-            if (Input.GetMouseButtonUp(0))
-            {
-                DisableRotation();
-            }
-        }
-    }
-
     public void EnableRotation()
     {
         freeLookCamera.m_XAxis.m_MaxSpeed = rotateSpeed;
