@@ -5,6 +5,8 @@ using System.Linq;
 
 public class Stack : MonoBehaviour
 {
+    public float StackHeight => Mathf.Ceil(blocks.Count / 3) * blockSizeY;
+
     [SerializeField] private GameObject blockPrefab;
     [SerializeField] private float blockSpacing;
     [SerializeField] List<Block> blocks;
