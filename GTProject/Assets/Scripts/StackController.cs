@@ -13,10 +13,12 @@ public class StackController : MonoBehaviour
     int currentStack;
 
     CameraController cameraController;
+    StackUI stackUI;
 
     private void Awake()
     {
         cameraController = FindObjectOfType<CameraController>();
+        stackUI = FindObjectOfType<StackUI>();
     }
 
     public void InitialiseStacks(List<BlockData> _blockData)
@@ -54,6 +56,7 @@ public class StackController : MonoBehaviour
     void FocusOnCurrentStack()
     {
         cameraController.OrbitStack(stacks[currentStack]);
+        stackUI.SetStackTitle(stacks[currentStack].StackName);
     }
 
     private void Update()
@@ -78,16 +81,26 @@ public class StackController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.A))
         {
-            --currentStack;
-            currentStack = currentStack < 0 ? stacks.Count - 1 : currentStack;
-            FocusOnCurrentStack();
+            FocusPreviousStack();
         }
 
         if (Input.GetKeyDown(KeyCode.D))
         {
-            ++currentStack;
-            currentStack = currentStack >= stacks.Count ? 0 : currentStack;
-            FocusOnCurrentStack();
+            FocusNextStack();
         }
+    }
+
+    public void FocusNextStack()
+    {
+        ++currentStack;
+        currentStack = currentStack >= stacks.Count ? 0 : currentStack;
+        FocusOnCurrentStack();
+    }
+
+    public void FocusPreviousStack()
+    {
+        --currentStack;
+        currentStack = currentStack < 0 ? stacks.Count - 1 : currentStack;
+        FocusOnCurrentStack();
     }
 }

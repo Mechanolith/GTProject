@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.EventSystems;
 
 public class CameraController : MonoBehaviour
 {
@@ -29,14 +30,17 @@ public class CameraController : MonoBehaviour
     {
         //[Camera] [Input]
         //Todo: Move this into core controls
-        if (Input.GetMouseButtonDown(0))
+        if (!EventSystem.current.IsPointerOverGameObject())
         {
-            EnableRotation();
-        }
+            if (Input.GetMouseButtonDown(0))
+            {
+                EnableRotation();
+            }
 
-        if (Input.GetMouseButtonUp(0))
-        {
-            DisableRotation();
+            if (Input.GetMouseButtonUp(0))
+            {
+                DisableRotation();
+            }
         }
     }
 

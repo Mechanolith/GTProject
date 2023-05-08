@@ -6,6 +6,7 @@ using System.Linq;
 public class Stack : MonoBehaviour
 {
     public float StackHeight => Mathf.Ceil(blocks.Count / 3) * blockSizeY;
+    public string StackName => stackName;
 
     [SerializeField] private GameObject blockPrefab;
     [SerializeField] private float blockSpacing;
@@ -13,6 +14,7 @@ public class Stack : MonoBehaviour
 
     float blockSizeY = -1;
     float blockSizeZ = -1;
+    string stackName = "The Great Stack Of Learning";
 
     public void Initialise(List<BlockData> _blockData) 
     {
@@ -21,6 +23,12 @@ public class Stack : MonoBehaviour
                 .ThenBy(b => b.cluster)
                 .ThenBy(b => b.standardID)
                 .ToList();
+
+        if (_blockData.Any())
+        {
+            stackName = _blockData[0].grade;
+            name = $"{stackName} Stack";
+        }
 
         SpawnBlocks(_blockData);
     }
