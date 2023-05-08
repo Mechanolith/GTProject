@@ -7,6 +7,7 @@ public class Stack : MonoBehaviour
 {
     public float StackHeight => Mathf.Ceil(blocks.Count / 3) * blockSizeY;
     public string StackName => stackName;
+    public bool IsTesting { get; private set; }
 
     [SerializeField] private GameObject blockPrefab;
     [SerializeField] private float blockSpacing;
@@ -90,6 +91,8 @@ public class Stack : MonoBehaviour
         {
             block.StartTest();
         }
+
+        IsTesting = true;
     }
 
     public void Reset()
@@ -98,5 +101,7 @@ public class Stack : MonoBehaviour
         {
             block.Reset();
         }
+
+        IsTesting = false;
     }
 }

@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class StackController : MonoBehaviour
 {
+    Stack CurrentStack => stacks[currentStackIndex];
+
     [SerializeField] private GameObject stackParent;
     [SerializeField] private float stackOffset;
     [SerializeField] private int maxStacks = 3; //The data does have a 4th "stack" of one block, but the spec says there's only 3.
     List<Stack> stacks = new List<Stack>();
-
-    int currentStack;
+    
+    int currentStackIndex;
 
     CameraController cameraController;
     StackUI stackUI;
@@ -33,7 +35,7 @@ public class StackController : MonoBehaviour
             CreateStack(blocks);
         }
 
-        currentStack = 0;
+        currentStackIndex = 0;
         FocusOnCurrentStack();
     }
 
@@ -55,8 +57,9 @@ public class StackController : MonoBehaviour
 
     void FocusOnCurrentStack()
     {
-        cameraController.OrbitStack(stacks[currentStack]);
-        stackUI.SetStackTitle(stacks[currentStack].StackName);
+        cameraController.OrbitStack(CurrentStack);
+        stackUI.SetStackTitle(CurrentStack.StackName);
+        stackUI.SetTestButtons(CurrentStack.IsTesting);
     }
 
     private void Update()
@@ -92,15 +95,28 @@ public class StackController : MonoBehaviour
 
     public void FocusNextStack()
     {
-        ++currentStack;
-        currentStack = currentStack >= stacks.Count ? 0 : currentStack;
+        ++currentStackIndex;
+        currentStackIndex = currentStackIndex >= stacks.Count ? 0 : currentStackIndex;
         FocusOnCurrentStack();
     }
 
     public void FocusPreviousStack()
     {
-        --currentStack;
-        currentStack = currentStack < 0 ? stacks.Count - 1 : currentStack;
+        --currentStackIndex;
+        currentStackIndex = currentStackIndex < 0 ? stacks.Count - 1 : currentStackIndex;
         FocusOnCurrentStack();
     }
+
+    public void TestCurrentStack()
+    {
+        CurrentStack.StartTest();
+        stackUI.SetTestButtons(true);
+    }
+
+    public void ResetCurrentStack()
+    {
+        CurrentStack.Reset();
+        stackUI.SetTestButtons(false);
+    }
+
 }
