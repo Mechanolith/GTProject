@@ -16,6 +16,7 @@ public class Bootstrap : MonoBehaviour
         //Create an object for the fetch because coroutines only run on monos which have to be in the scene.
         //[Data] [Code Quality]
         //Todo: Investigate if a static class with async would work more cleanly here than a mono with a coroutine.
+        //Todo: Clean up this object from the scene when we're done (if we don't switch to a non-object async approach).
         GameObject fetcherObect = new GameObject();
         fetcherObect.transform.name = "Data Fetcher";
         DataFetcher dataFetcher = fetcherObect.AddComponent<DataFetcher>();

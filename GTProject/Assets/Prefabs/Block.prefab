@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4830214068227780543}
   - component: {fileID: 4830214068227780540}
   - component: {fileID: 9186273282981748111}
+  - component: {fileID: 6306542885166987809}
   m_Layer: 0
   m_Name: Block
   m_TagString: Untagged
@@ -110,3 +111,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01a22eca9570d2f46a3ae1ba6732aad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  glassMaterial: {fileID: 2100000, guid: 64ef9e39565530d478c33518b71e02f6, type: 2}
+  woodMaterial: {fileID: 2100000, guid: d2cc0b005b49b37498e6e97efb652c1c, type: 2}
+  metalMaterial: {fileID: 2100000, guid: fe333b7dc77ba4941baadf42a73582e2, type: 2}
+--- !u!54 &6306542885166987809
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4830214068227780541}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

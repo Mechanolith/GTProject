@@ -41,4 +41,25 @@ public class StackController : MonoBehaviour
     {
 
     }
+
+    private void Update()
+    {
+        //[Testing]
+        //Todo: Remove this once there's proper controls.
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            foreach(var stack in stacks)
+            {
+                stack.StartTest();
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            foreach (var stack in stacks)
+            {
+                stack.Reset();
+            }
+        }
+    }
 }

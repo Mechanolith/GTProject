@@ -58,7 +58,7 @@ public class Stack : MonoBehaviour
         Vector3 blockPosition = Vector3.zero;
 
         int rowNumber = Mathf.FloorToInt(_iteration / 3);
-        float verticalOffset = rowNumber * blockSizeY;
+        float verticalOffset = (rowNumber * blockSizeY) + (blockSizeY * 0.5f);  //Add half the block size so the bottom is flat on 0.
 
         //(i % 3) - 1 will always resolve to -1, 0, 1 in order, allowing us to easily place blocks as left, center, or right.
         float horizontalOffset = ((_iteration % 3) - 1) * (blockSizeZ + blockSpacing);
@@ -72,5 +72,21 @@ public class Stack : MonoBehaviour
 
         _blockObject.transform.localPosition = blockPosition;
         _blockObject.transform.localRotation = Quaternion.Euler(0, rotation, 0);
+    }
+
+    public void StartTest()
+    {
+        foreach (Block block in blocks)
+        {
+            block.StartTest();
+        }
+    }
+
+    public void Reset()
+    {
+        foreach(Block block in blocks) 
+        {
+            block.Reset();
+        }
     }
 }
