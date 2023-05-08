@@ -31,25 +31,10 @@ public class DataFetcher : MonoBehaviour
                     Debug.Log($"[DataFetcher] Successfully downloaded data!");
 
                     //If successful, convert the JSON to actual objects and return them.
-                    _onComplete(ProcessIncomingData(webRequest.downloadHandler.text));
+                    List<BlockData> incomingBlocks = JsonConvert.DeserializeObject<List<BlockData>>(webRequest.downloadHandler.text);
+                    _onComplete(incomingBlocks);
                     break;
             }
         }
-    }
-
-    List<BlockData> ProcessIncomingData(string _data)
-    {
-        //Read the data out of the JSON.
-        List<IncomingBlockData> incomingBlocks = JsonConvert.DeserializeObject<List<IncomingBlockData>>(_data);
-
-        List<BlockData> outputBlocks = new List<BlockData>();
-
-        //Convert that data to a new class with better variable naming.
-        foreach (var block in incomingBlocks)
-        {
-            outputBlocks.Add(new BlockData(block));
-        }
-
-        return outputBlocks;
     }
 }
