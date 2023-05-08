@@ -7,7 +7,9 @@ public class StackController : MonoBehaviour
 {
     [SerializeField] private GameObject stackParent;
     [SerializeField] private float stackOffset;
+    [SerializeField] private int maxStacks = 3; //The data does have a 4th "stack" of one block, but the spec says there's only 3.
     List<Stack> stacks = new List<Stack>();
+
     int currentStack;
 
     public void InitialiseStacks(List<BlockData> _blockData)
@@ -28,6 +30,11 @@ public class StackController : MonoBehaviour
 
     void CreateStack(List<BlockData> _blockData)
     {
+        if(stacks.Count >= maxStacks) 
+        {
+            return;
+        }
+
         float offset = stackOffset * stacks.Count;
         Vector3 spawnPoint = Vector3.right * offset;
 
