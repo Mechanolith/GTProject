@@ -17,6 +17,7 @@ public class BlockData
     {
         id = _incomingData.id;
         subject = _incomingData.subject;
+        grade = _incomingData.grade;
         mastery = _incomingData.mastery;
         domainID = _incomingData.domainid;
         domain = _incomingData.domain;
