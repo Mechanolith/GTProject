@@ -4,12 +4,6 @@ using UnityEngine;
 
 public class Block : MonoBehaviour
 {
-    //[Blocks] [Code Quality]
-    //Todo: Move this to a more central place, rather than storing it on every block.
-    [SerializeField] private Material glassMaterial;
-    [SerializeField] private Material woodMaterial;
-    [SerializeField] private Material metalMaterial;
-
     Vector3 spawnPoint;
     Quaternion spawnRotation;
     BlockData data;
@@ -30,25 +24,7 @@ public class Block : MonoBehaviour
 
     void SetMaterialType()
     {
-        Material selectedMaterial;
-
-        switch (data.mastery)
-        {
-            case MasteryLevel.Learned:
-                selectedMaterial = woodMaterial;
-                break;
-
-            case MasteryLevel.Mastered:
-                selectedMaterial = metalMaterial;
-                break;
-
-            case MasteryLevel.None:
-            default:
-                selectedMaterial = glassMaterial;
-                break;
-        }
-
-        GetComponent<MeshRenderer>().material = selectedMaterial;
+        GetComponent<MeshRenderer>().material = BlockMaterials.GetMasteryMaterial(data.mastery);
     }
 
     public void StartTest()

@@ -8,6 +8,7 @@ public class Bootstrap : MonoBehaviour
 
     void Awake()
     {
+        BlockMaterials.Initialise();
         FetchData();
     }
 

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e63bdead2aad224796f33cf68c38a5c, type: 3}
+  m_Name: BlockMaterialsData
+  m_EditorClassIdentifier: 
+  GlassMaterial: {fileID: 2100000, guid: 64ef9e39565530d478c33518b71e02f6, type: 2}
+  WoodMaterial: {fileID: 2100000, guid: d2cc0b005b49b37498e6e97efb652c1c, type: 2}
+  MetalMaterial: {fileID: 2100000, guid: fe333b7dc77ba4941baadf42a73582e2, type: 2}
