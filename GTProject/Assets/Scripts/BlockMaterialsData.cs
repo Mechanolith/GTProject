@@ -5,5 +5,5 @@ public class BlockMaterialsData : ScriptableObject
 {
     public Material GlassMaterial;
     public Material WoodMaterial;
-    public Material MetalMaterial;
+    public Material StoneMaterial;
 }

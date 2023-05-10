@@ -17,7 +17,7 @@ public static class BlockMaterials
                 return materialData.WoodMaterial;
 
             case MasteryLevel.Mastered:
-                return materialData.MetalMaterial;
+                return materialData.StoneMaterial;
 
             case MasteryLevel.None:
             default:
