@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Cinemachine;
 
 public class Stack : MonoBehaviour
 {
+    public CinemachineFreeLook Camera => stackCamera;
     public float StackHeight => Mathf.Ceil(blocks.Count / 3) * blockSizeY;
     public string StackName => stackName;
     public bool IsTesting { get; private set; }
 
+    [SerializeField] private CinemachineFreeLook stackCamera;
     [SerializeField] private GameObject blockPrefab;
     [SerializeField] private float blockSpacing;
     [SerializeField] List<Block> blocks;

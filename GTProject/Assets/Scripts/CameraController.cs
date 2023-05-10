@@ -6,33 +6,35 @@ using UnityEngine.EventSystems;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private CinemachineFreeLook freeLookCamera;
     [SerializeField] private float heightOffset;
     [SerializeField] private float rotateSpeed;
-
-    private void Awake()
-    {
-        freeLookCamera.m_XAxis.m_MaxSpeed = 0;
-    }
+    private CinemachineFreeLook currentCamera;
 
     public void OrbitStack(Stack _stack)
     {
-        freeLookCamera.Follow = _stack.transform;
-        freeLookCamera.LookAt = _stack.transform;
-
-        for(int i = 0; i < freeLookCamera.m_Orbits.Length; ++i)
+        if(currentCamera != null)
         {
-            freeLookCamera.m_Orbits[i].m_Height = _stack.StackHeight + heightOffset;
+            currentCamera.m_XAxis.m_MaxSpeed = 0;
+            currentCamera.Priority = 0;
+        }
+
+        currentCamera = _stack.Camera;
+        currentCamera.Priority = 10;
+        currentCamera.m_XAxis.m_MaxSpeed = 0;
+
+        for (int i = 0; i < currentCamera.m_Orbits.Length; ++i)
+        {
+            currentCamera.m_Orbits[i].m_Height = _stack.StackHeight + heightOffset;
         }
     }
 
     public void EnableRotation()
     {
-        freeLookCamera.m_XAxis.m_MaxSpeed = rotateSpeed;
+        currentCamera.m_XAxis.m_MaxSpeed = rotateSpeed;
     }
 
     public void DisableRotation()
     {
-        freeLookCamera.m_XAxis.m_MaxSpeed = 0;
+        currentCamera.m_XAxis.m_MaxSpeed = 0;
     }
 }
