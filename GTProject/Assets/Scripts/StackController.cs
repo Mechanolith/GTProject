@@ -31,14 +31,14 @@ public class StackController : MonoBehaviour
         foreach(string grade in grades)
         {
             List<BlockData> blocks = _blockData.Where(b => b.Grade == grade).ToList();
-            CreateStack(blocks);
+            CreateStack(blocks, grade);
         }
 
         currentStackIndex = 0;
         FocusOnCurrentStack();
     }
 
-    void CreateStack(List<BlockData> _blockData)
+    void CreateStack(List<BlockData> _blockData, string _grade)
     {
         if(stacks.Count >= maxStacks) 
         {
@@ -49,7 +49,7 @@ public class StackController : MonoBehaviour
         Vector3 spawnPoint = Vector3.right * offset;
 
         Stack stack = Instantiate(stackParent, spawnPoint, Quaternion.identity).GetComponent<Stack>();
-        stack.Initialise(_blockData);
+        stack.Initialise(_blockData, _grade);
 
         stacks.Add(stack);
     }
@@ -95,7 +95,7 @@ public class StackController : MonoBehaviour
 
     public void ResetCurrentStack()
     {
-        CurrentStack.Reset();
+        CurrentStack.ResetTest();
         stackUI.SetTestButtons(false);
     }
 

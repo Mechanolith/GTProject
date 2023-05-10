@@ -39,7 +39,7 @@ public class Block : MonoBehaviour
         rigidbody.isKinematic = false;
     }
 
-    public void Reset()
+    public void ResetTest()
     {
         rigidbody.isKinematic = true;
         gameObject.SetActive(true);

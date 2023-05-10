@@ -19,7 +19,7 @@ public class Stack : MonoBehaviour
     private float blockSizeZ = -1;
     private string stackName = "The Great Stack Of Learning";
 
-    public void Initialise(List<BlockData> _blockData) 
+    public void Initialise(List<BlockData> _blockData, string _grade) 
     {
         //Sort the blocks by Domain > Cluster > Standard ID.
         _blockData = _blockData.OrderBy(b => b.Domain)
@@ -27,11 +27,8 @@ public class Stack : MonoBehaviour
                 .ThenBy(b => b.StandardID)
                 .ToList();
 
-        if (_blockData.Any())
-        {
-            stackName = _blockData[0].Grade;
-            name = $"{stackName} Stack";
-        }
+        stackName = _grade;
+        name = $"{stackName} Stack";
 
         SpawnBlocks(_blockData);
     }
@@ -99,11 +96,11 @@ public class Stack : MonoBehaviour
         IsTesting = true;
     }
 
-    public void Reset()
+    public void ResetTest()
     {
         foreach(Block block in blocks) 
         {
-            block.Reset();
+            block.ResetTest();
         }
 
         IsTesting = false;
