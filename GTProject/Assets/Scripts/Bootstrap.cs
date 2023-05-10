@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +5,7 @@ public class Bootstrap : MonoBehaviour
 {
     private readonly string apiAddress = "https://ga1vqcu3o1.execute-api.us-east-1.amazonaws.com/Assessment/stack";
 
-    LoadingScreen loadingScreen;
+    private LoadingScreen loadingScreen;
 
     void Awake()
     {

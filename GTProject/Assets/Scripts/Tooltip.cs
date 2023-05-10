@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
@@ -17,13 +15,13 @@ public class Tooltip : MonoBehaviour
     private int framesUntilReposition = 2;
     private Block selectedBlock;
 
-    private void Start()
+    void Start()
     {
         tooltipRect = GetComponent<RectTransform>();
         HideTooltip();
     }
 
-    private void Update()
+    void Update()
     {
         //Because we dynamically position the tooltip relative to the mouse and screen borders
         //We need to wait a frame (or two) for the layout to fully rebuild before we attempt to position it.

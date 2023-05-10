@@ -1,14 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Block : MonoBehaviour
 {
-    Vector3 spawnPoint;
-    Quaternion spawnRotation;
-    BlockData data;
-    Rigidbody rigidbody;
-    MeshRenderer renderer;
+    private Vector3 spawnPoint;
+    private Quaternion spawnRotation;
+    private BlockData data;
+    private Rigidbody rigidbody;
+    private MeshRenderer renderer;
 
     public void Initialise(BlockData _data)
     {
@@ -27,12 +25,12 @@ public class Block : MonoBehaviour
 
     void SetMaterialType()
     {
-        renderer.material = BlockMaterials.GetMasteryMaterial(data.mastery);
+        renderer.material = BlockMaterials.GetMasteryMaterial(data.Mastery);
     }
 
     public void StartTest()
     {
-        if(data.mastery == MasteryLevel.None)
+        if(data.Mastery == MasteryLevel.None)
         {
             gameObject.SetActive(false);
             return;
@@ -51,10 +49,10 @@ public class Block : MonoBehaviour
 
     public string GetInspectString()
     {
-        return $"<b>{data.grade}:</b> {data.domain}\n" +
-            $"{data.cluster}\n\n" +
-            $"<b>Mastery:</b> {data.mastery}\n\n" +
-            $"<b>{data.standardID}:</b>\n{data.standardDescription}";
+        return $"<b>{data.Grade}:</b> {data.Domain}\n" +
+            $"{data.Cluster}\n\n" +
+            $"<b>Mastery:</b> {data.Mastery}\n\n" +
+            $"<b>{data.StandardID}:</b>\n{data.StandardDescription}";
     }
 
     public void Select()

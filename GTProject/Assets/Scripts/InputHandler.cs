@@ -1,22 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+//[Input] [Code Quality]
+//Todo: This should probably be rewritten as an event based system that the various controllers subscribe to,
+//instead of calling the functions directly in response to inputs. But for this scale of project it gets the job done.
 public class InputHandler : MonoBehaviour
 {
-    CameraController cameraController;
-    StackController stackController;
-    Tooltip tooltip;
+    private CameraController cameraController;
+    private StackController stackController;
+    private Tooltip tooltip;
 
-    private void Awake()
+    void Awake()
     {
         cameraController = FindObjectOfType<CameraController>();
         stackController = FindObjectOfType<StackController>();
         tooltip = FindObjectOfType<Tooltip>();
     }
 
-    private void Update()
+    void Update()
     {
         //Always hide the tooltip if we click away.
         if (Input.GetMouseButtonDown(0))

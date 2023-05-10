@@ -1,13 +1,13 @@
 [System.Serializable]
 public class BlockData
 {
-    public int id;
-    public string subject;
-    public string grade;
-    public MasteryLevel mastery;
-    public string domainID;
-    public string domain;
-    public string cluster;
-    public string standardID;
-    public string standardDescription;
+    public int ID;
+    public string Subject;
+    public string Grade;
+    public MasteryLevel Mastery;
+    public string DomainID;
+    public string Domain;
+    public string Cluster;
+    public string StandardID;
+    public string StandardDescription;
 }

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
@@ -14,23 +13,23 @@ public class Stack : MonoBehaviour
     [SerializeField] private CinemachineFreeLook stackCamera;
     [SerializeField] private GameObject blockPrefab;
     [SerializeField] private float blockSpacing;
-    [SerializeField] List<Block> blocks;
 
-    float blockSizeY = -1;
-    float blockSizeZ = -1;
-    string stackName = "The Great Stack Of Learning";
+    private List<Block> blocks;
+    private float blockSizeY = -1;
+    private float blockSizeZ = -1;
+    private string stackName = "The Great Stack Of Learning";
 
     public void Initialise(List<BlockData> _blockData) 
     {
         //Sort the blocks by Domain > Cluster > Standard ID.
-        _blockData = _blockData.OrderBy(b => b.domain)
-                .ThenBy(b => b.cluster)
-                .ThenBy(b => b.standardID)
+        _blockData = _blockData.OrderBy(b => b.Domain)
+                .ThenBy(b => b.Cluster)
+                .ThenBy(b => b.StandardID)
                 .ToList();
 
         if (_blockData.Any())
         {
-            stackName = _blockData[0].grade;
+            stackName = _blockData[0].Grade;
             name = $"{stackName} Stack";
         }
 
@@ -39,6 +38,8 @@ public class Stack : MonoBehaviour
 
     void SpawnBlocks(List<BlockData> _blockData)
     {
+        blocks = new List<Block>();
+
         //Spawn all the blocks in a stack and initialise them.
         for (int i = 0; i < _blockData.Count; ++i)
         {

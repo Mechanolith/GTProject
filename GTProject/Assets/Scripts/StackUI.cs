@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
 
 public class StackUI : MonoBehaviour
 {
@@ -10,7 +7,7 @@ public class StackUI : MonoBehaviour
     [SerializeField] private GameObject testButton;
     [SerializeField] private GameObject resetButton;
 
-    private void Awake()
+    void Awake()
     {
         testButton.SetActive(true);
         resetButton.SetActive(false);
