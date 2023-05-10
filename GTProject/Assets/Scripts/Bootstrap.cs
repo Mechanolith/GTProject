@@ -6,8 +6,13 @@ public class Bootstrap : MonoBehaviour
 {
     private readonly string apiAddress = "https://ga1vqcu3o1.execute-api.us-east-1.amazonaws.com/Assessment/stack";
 
+    LoadingScreen loadingScreen;
+
     void Awake()
     {
+        loadingScreen = FindObjectOfType<LoadingScreen>();
+        loadingScreen.Show();
+
         BlockMaterials.Initialise();
         FetchData();
     }
@@ -17,11 +22,16 @@ public class Bootstrap : MonoBehaviour
         //Create an object for the fetch because coroutines only run on monos which have to be in the scene.
         //[Data] [Code Quality]
         //Todo: Investigate if a static class with async would work more cleanly here than a mono with a coroutine.
-        //Todo: Clean up this object from the scene when we're done (if we don't switch to a non-object async approach).
-        GameObject fetcherObect = new GameObject();
-        fetcherObect.transform.name = "Data Fetcher";
-        DataFetcher dataFetcher = fetcherObect.AddComponent<DataFetcher>();
-        dataFetcher.FetchBlocks(apiAddress, InitialiseStacks);
+        GameObject fetcherObject = new GameObject();
+        fetcherObject.transform.name = "Data Fetcher";
+
+        DataFetcher dataFetcher = fetcherObject.AddComponent<DataFetcher>();
+        dataFetcher.FetchBlocks(apiAddress, (_blockData) => 
+        {
+            InitialiseStacks(_blockData);
+            loadingScreen.Hide();
+            Destroy(fetcherObject);
+        });
     }
 
     void InitialiseStacks(List<BlockData> _blockData)
