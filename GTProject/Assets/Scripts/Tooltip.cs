@@ -15,6 +15,7 @@ public class Tooltip : MonoBehaviour
     private RectTransform tooltipRect;
     private int dirtyPositionFrames;
     private int framesUntilReposition = 2;
+    private Block selectedBlock;
 
     private void Start()
     {
@@ -44,8 +45,12 @@ public class Tooltip : MonoBehaviour
 
         if(hit.transform != null)
         {
-            string blockInfo = hit.transform.GetComponent<Block>().GetInspectString();
-            ShowTooltip(blockInfo);
+            DeselectBlock();
+
+            selectedBlock = hit.transform.GetComponent<Block>();
+            selectedBlock.Select();
+
+            ShowTooltip(selectedBlock.GetInspectString());
         }
         else 
         {
@@ -101,6 +106,16 @@ public class Tooltip : MonoBehaviour
 
     public void HideTooltip()
     {
+        DeselectBlock();
         gameObject.SetActive(false);
+    }
+
+    void DeselectBlock()
+    {
+        if (selectedBlock != null)
+        {
+            selectedBlock.Deselect();
+            selectedBlock = null;
+        }
     }
 }

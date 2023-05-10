@@ -8,6 +8,7 @@ public class Block : MonoBehaviour
     Quaternion spawnRotation;
     BlockData data;
     Rigidbody rigidbody;
+    MeshRenderer renderer;
 
     public void Initialise(BlockData _data)
     {
@@ -19,12 +20,14 @@ public class Block : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         rigidbody.isKinematic = true;
 
+        renderer = GetComponent<MeshRenderer>();
+
         SetMaterialType();
     }
 
     void SetMaterialType()
     {
-        GetComponent<MeshRenderer>().material = BlockMaterials.GetMasteryMaterial(data.mastery);
+        renderer.material = BlockMaterials.GetMasteryMaterial(data.mastery);
     }
 
     public void StartTest()
@@ -50,6 +53,17 @@ public class Block : MonoBehaviour
     {
         return $"<b>{data.grade}:</b> {data.domain}\n" +
             $"{data.cluster}\n\n" +
+            $"<b>Mastery:</b> {data.mastery}\n\n" +
             $"<b>{data.standardID}:</b>\n{data.standardDescription}";
+    }
+
+    public void Select()
+    {
+        renderer.material.EnableKeyword("_EMISSION");
+    }
+
+    public void Deselect()
+    {
+        renderer.material.DisableKeyword("_EMISSION");
     }
 }
