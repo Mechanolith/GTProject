@@ -30,17 +30,18 @@ public class InputHandler : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 cameraController.EnableRotation();
-            }
-
-            if (Input.GetMouseButtonUp(0))
-            {
-                cameraController.DisableRotation();
-            }
+            }   
 
             if (Input.GetMouseButtonDown(1))
             {
                 tooltip.TryInspectBlock();
             }
+        }
+
+        //If we start rotatating then stop with the mouse over a UI element we should still stop rotating.
+        if (Input.GetMouseButtonUp(0))
+        {
+            cameraController.DisableRotation();
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
